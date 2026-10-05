@@ -1,0 +1,92 @@
+% ============================================================
+% Рисунки
+% ============================================================
+
+\RequirePackage{graphicx}
+\RequirePackage{caption}
+\RequirePackage{chngcntr}
+\RequirePackage{xparse}
+\RequirePackage{expl3}
+\RequirePackage{float}
+
+% ------------------------------------------------------------
+% Настройки нумерации
+% ------------------------------------------------------------
+
+\newif\ifConfigFigureNumberedBySection
+\ConfigFigureNumberedBySectionfalse
+
+% ------------------------------------------------------------
+% Настройка подписей
+% ------------------------------------------------------------
+
+\newcommand{\ESKDconfigureFigureCaption}{%
+    \captionsetup[figure]{
+        justification=\ConfigFigureCaptionJustification,
+        singlelinecheck=\ConfigFigureCaptionSingleLineCheck,
+        labelsep=\ConfigFigureCaptionLabelSep,
+        font=\ConfigFigureCaptionFont
+    }
+}
+
+% ------------------------------------------------------------
+% Команда вставки рисунка
+% ------------------------------------------------------------
+
+\ExplSyntaxOn
+
+\keys_define:nn { eskd / figure }
+{
+    caption .tl_set:N = \l_eskd_figure_caption_tl,
+    label   .tl_set:N = \l_eskd_figure_label_tl,
+    width   .tl_set:N = \l_eskd_figure_width_tl,
+    height  .tl_set:N = \l_eskd_figure_height_tl,
+}
+
+\NewDocumentCommand{\ESKDfigure}{O{} m}
+{
+% --------------------------------------------------------
+% Значения по умолчанию
+% --------------------------------------------------------
+
+    \tl_clear:N \l_eskd_figure_caption_tl
+    \tl_clear:N \l_eskd_figure_label_tl
+
+    \tl_set:Nn \l_eskd_figure_width_tl
+    {\ConfigFigureWidth}
+
+    \tl_set:Nn \l_eskd_figure_height_tl
+    {\ConfigFigureHeight}
+
+    % --------------------------------------------------------
+    % Разбор параметров
+    % --------------------------------------------------------
+
+    \keys_set:nn { eskd / figure } {#1}
+
+    % --------------------------------------------------------
+    % Рисунок
+    % --------------------------------------------------------
+
+    \begin{figure}[H]
+    \centering
+
+    \includegraphics[
+        width=\l_eskd_figure_width_tl,
+        height=\l_eskd_figure_height_tl,
+        keepaspectratio
+    ]{#2}
+
+    \tl_if_empty:NF \l_eskd_figure_caption_tl
+    {
+        \caption{\l_eskd_figure_caption_tl}
+
+        \tl_if_empty:NF \l_eskd_figure_label_tl
+        {
+            \label{\l_eskd_figure_label_tl}
+        }
+    }
+    \end{figure}
+}
+
+\ExplSyntaxOff

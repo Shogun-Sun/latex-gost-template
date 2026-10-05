@@ -63,3 +63,48 @@
 \renewcommand{\ConfigBibliographyFile}{src/bibliography/sources.bib}
 
 \addbibresource{\ConfigBibliographyFile}
+
+% ============================================================
+% Рисунки
+% ============================================================
+
+% ------------------------------------------------------------
+% Каталог изображений
+% ------------------------------------------------------------
+
+\graphicspath{{assets/images/}}
+
+% ------------------------------------------------------------
+% Размер изображений
+% ------------------------------------------------------------
+
+% Максимальная ширина изображения.
+\newcommand{\ConfigFigureWidth}{0.8\textwidth}
+
+% Максимальная высота изображения.
+\newcommand{\ConfigFigureHeight}{0.3\textheight}
+
+% ------------------------------------------------------------
+% Подписи рисунков
+% ------------------------------------------------------------
+
+% Размер шрифта подписи.
+% tiny, scriptsize, footnotesize, small,
+% normalsize, large, Large, LARGE, huge, Huge
+\newcommand{\ConfigFigureCaptionFont}{small}
+
+% Выравнивание подписи.
+% centering, raggedright, raggedleft
+\newcommand{\ConfigFigureCaptionJustification}{centering}
+
+% Разделитель между номером и названием:
+% endash — «Рис. 1.1 — Название»
+% space  — «Рис. 1.1 Название»
+% colon  — «Рис. 1.1: Название»
+\newcommand{\ConfigFigureCaptionLabelSep}{endash}
+
+% Центрирование коротких подписей.
+\newcommand{\ConfigFigureCaptionSingleLineCheck}{true}
+
+% Применить настройки.
+\ESKDconfigureFigureCaption
