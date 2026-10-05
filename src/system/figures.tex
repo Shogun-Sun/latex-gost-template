@@ -8,6 +8,7 @@
 \RequirePackage{xparse}
 \RequirePackage{expl3}
 \RequirePackage{float}
+\RequirePackage{xcolor}
 
 % ------------------------------------------------------------
 % Настройки нумерации
@@ -71,11 +72,24 @@
     \begin{figure}[H]
     \centering
 
+    \ifConfigFigureFrameEnabled
+    \setlength{\fboxrule}{\ConfigFigureFrameRule}
+    \setlength{\fboxsep}{\ConfigFigureFrameSep}
+
+    \fcolorbox{ConfigFigureFrameColor}{white}{%
+        \includegraphics[
+            width=\l_eskd_figure_width_tl,
+            height=\l_eskd_figure_height_tl,
+            keepaspectratio
+        ]{#2}%
+    }
+    \else
     \includegraphics[
         width=\l_eskd_figure_width_tl,
         height=\l_eskd_figure_height_tl,
         keepaspectratio
     ]{#2}
+    \fi
 
     \tl_if_empty:NF \l_eskd_figure_caption_tl
     {

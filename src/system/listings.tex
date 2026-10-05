@@ -4,6 +4,15 @@
 
 \RequirePackage{listings}
 \RequirePackage{xcolor}
+\RequirePackage{caption}
+\RequirePackage{chngcntr}
+
+% ------------------------------------------------------------
+% Настройки нумерации
+% ------------------------------------------------------------
+
+\newif\ifConfigListingNumberedBySection
+\ConfigListingNumberedBySectionfalse
 
 % ------------------------------------------------------------
 % Цвета
@@ -38,4 +47,29 @@
     xleftmargin=2em,
     framexleftmargin=1.5em,
     captionpos=b
+}
+
+% ------------------------------------------------------------
+% Нумерация листингов
+% ------------------------------------------------------------
+
+\newif\ifConfigListingNumberedBySection
+\ConfigListingNumberedBySectionfalse
+
+\AtBeginDocument{%
+    \ifConfigListingNumberedBySection
+    \counterwithin{lstlisting}{section}%
+    \fi
+}
+% ------------------------------------------------------------
+% Настройка подписей
+% ------------------------------------------------------------
+
+\newcommand{\ESKDconfigureListingCaption}{%
+    \captionsetup[lstlisting]{
+        labelsep=\ConfigListingCaptionLabelSep,
+        justification=\ConfigListingCaptionJustification,
+        singlelinecheck=\ConfigListingCaptionSingleLineCheck,
+        font=\ConfigListingCaptionFont
+    }
 }
