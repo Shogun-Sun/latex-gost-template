@@ -12,6 +12,10 @@
 !/fonts/sans/IBMPlexSansSemiCondensed/
 !/fonts/sans/IBMPlexSansSemiCondensed/**
 
+!/fonts/mono/
+!/fonts/mono/Hack/
+!/fonts/mono/Hack/**
+
 # Сборка
 /build/
 
