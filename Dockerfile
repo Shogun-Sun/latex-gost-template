@@ -10,9 +10,12 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     texlive-latex-recommended \
     texlive-latex-extra \
     texlive-xetex \
+    texlive-luatex \
     texlive-lang-cyrillic \
     texlive-bibtex-extra \
     texlive-fonts-recommended \
+    texlive-fonts-extra \
+    texlive-plain-generic \
     biber \
     python3-pygments \
     fontconfig \
